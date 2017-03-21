@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="#5ec3fd"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/gy_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="关于"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/about"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蓝瑞环保"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginBottom="5dp"
+            android:padding="2dp"
+            android:background="#0144ac"
+            android:textColor="@color/colorwhite"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="      随着中天蓝瑞集团的发展，IT系统不断增多。为提高安全性、可审计性和方便性建立了统一登陆系统作为所有IT系统的入口。"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="        集团所有信息资源、数据都由统一登录系统提供保护，是所有IT系统的安全保障措施。信息管理部门将为每个员工建立统一登录的账户，并设置初始密码。请登录后立即修改自己的初始密码，确保信息安全。"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="                    如有使用问题，请联系管理员："/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="                    林跃金（18080921138）"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="                    统一登录：V"/>
+    <TextView
+        android:id="@+id/wo_banben"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.5"/>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>
