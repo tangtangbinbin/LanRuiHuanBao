@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -128,13 +130,14 @@ public class Acitivity_YinYong extends Activity {
 
     public View createView(String text,String state,String iconurl,String code){
         LinearLayout view = new LinearLayout(this);
+        view.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(5,5,5,5);
         ViewGroup.LayoutParams vlp = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        ViewGroup.LayoutParams vlp2 = new ViewGroup.LayoutParams(200,200);
+        ViewGroup.LayoutParams vlp2 = new ViewGroup.LayoutParams(getPixelsFromDp(60),getPixelsFromDp(60));
         view.setLayoutParams(lp);
 
         view.setOrientation(LinearLayout.VERTICAL);
@@ -317,10 +320,21 @@ public class Acitivity_YinYong extends Activity {
         TextView tx = new TextView(this);
         tx.setLayoutParams(vlp);
         tx.setText(text);
+        tx.setGravity(Gravity.CENTER);
         view.addView(img);
         view.addView(tx);
 
         return view;
+    }
+
+    private int getPixelsFromDp(int size){
+
+        DisplayMetrics metrics =new DisplayMetrics();
+
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        return(size * metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT;
+
     }
     public void geturl(String code){
         String result = GetAppsAcc.sendPostRequest(name,code);

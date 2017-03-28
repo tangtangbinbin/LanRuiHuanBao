@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.MessageDigest;
@@ -56,9 +57,9 @@ public class LoginActivity extends Activity {
         //显示到输入框
         acc.setText(spacc);
         pass.setText(sppass);
-        if (!(spacc.equals("")) && !(sppass.equals(""))){
+       /* if (!(spacc.equals("")) && !(sppass.equals(""))){
             login(spacc,sppass);
-        }
+        }*/
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,13 +68,13 @@ public class LoginActivity extends Activity {
                 if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "账号或密码不能为空", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (cb.isChecked()) {
+                   // if (cb.isChecked()) {
                         //保存账号密码
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("account", account);
                         editor.putString("password", password);
                         editor.commit();
-                    }
+                    //}
                     login(account,password);
                 }
 
@@ -84,6 +85,7 @@ public class LoginActivity extends Activity {
         private void login(final String name, final String pwd) {
             final Handler handler = new Handler() {
                 public void handleMessage(Message msg) {
+                    //Toast.makeText(getApplicationContext(),"收到的参数为："+msg.what,Toast.LENGTH_SHORT).show();
                     if (msg.what == 1000) {
                         SharedPreferences.Editor editor = userinfo.edit();
                         editor.putString("loginname",name);
@@ -93,7 +95,6 @@ public class LoginActivity extends Activity {
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-                        //Toast.makeText(getApplicationContext(), "登陆成功", Toast.LENGTH_LONG).show();
                     } else if (msg.what == 1001) {
                         Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_LONG).show();
 
@@ -136,16 +137,21 @@ public class LoginActivity extends Activity {
                     try {
                         Log.w("denglu:",result);
                         jsonObject = new JSONObject(result);
-                        SharedPreferences.Editor editor = usertoken.edit();
-                        editor.putString("token", jsonObject.get("token").toString());
-                        editor.commit();
-                        Log.w("token value:",jsonObject.get("token").toString());
                         msg.what =Integer.parseInt(jsonObject.get("code").toString());
-                        Log.w("服务器信息：", jsonObject.get("token").toString());
+                        Log.w("服务器信息：", jsonObject.get("code").toString());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     handler.sendMessage(msg);
+                    SharedPreferences.Editor editor = usertoken.edit();
+                    try {
+                        if (msg.what == 1000)
+                        editor.putString("token", jsonObject.get("token").toString());
+                        editor.commit();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             };
             new Thread(runnable).start();

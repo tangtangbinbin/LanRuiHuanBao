@@ -3,6 +3,8 @@ package com.lilan.lanruihuanbao;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -192,6 +195,9 @@ public class ShouYeFragment extends Fragment {
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                 .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
                 .penaltyLog().penaltyDeath().build());
+
+
+
         return view;
     }
     public void checkAPPUpdate(){
@@ -342,6 +348,7 @@ public class ShouYeFragment extends Fragment {
         TextView tx = new TextView(getActivity());
         tx.setLayoutParams(vlp);
         tx.setText(text);
+        tx.setGravity(Gravity.CENTER);
         view.addView(tx);
 
         return view;

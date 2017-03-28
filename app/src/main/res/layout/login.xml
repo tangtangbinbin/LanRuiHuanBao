@@ -44,7 +44,7 @@
         android:id="@+id/login_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
+        android:checked="true"
         android:text="记住密码"
         android:layout_marginLeft="10dp"/>
     <Button
